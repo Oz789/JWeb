@@ -1,0 +1,64 @@
+.bottomBar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 25px;
+  
+  width: clamp(620px, 33vw, 820px);
+
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.100);
+  border: 1px solid rgba(255, 255, 255, 0.621);
+  border-radius: 20px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.100);
+}
+
+@media (max-width: 520px) {
+  .bottomBar {
+    width: calc(100vw - 28px);
+  }
+}
+
+.bottomBar__uploadBtn {
+  height: 38px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.bottomBar__plus {
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+.bottomBar__inputWrap {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.bottomBar__textInput {
+  flex: 1;
+  height: 38px;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 14px;
+  font-size: 14px;
+}

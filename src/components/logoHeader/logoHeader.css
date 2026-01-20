@@ -1,0 +1,13 @@
+.brandHeader {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 14px;
+
+  opacity: 0.9;
+  pointer-events: none; 
+}

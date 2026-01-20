@@ -1,0 +1,23 @@
+.rootPage {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #1b1b1b;
+  background: radial-gradient(
+    1200px 700px at 20% 10%,
+    #f6f0e8 0%,
+    #f1e5d7 40%,
+    #eaded2 72%,
+    #d2c5b9 100%
+  );
+}
+
+.rootMain {
+  flex: 1;
+  min-height: 0;
+}
+
+.hiddenFileInput {
+  display: none;
+}
