@@ -5,7 +5,7 @@ import BottomBar from '../../components/bottombar/bottomBar';
 import TopLeftControl from '../../components/leftController/leftController';
 import LeftSidePanel from '../../components/LeftPanel/leftSidePanel';
 import MainChat from '../../components/mainChat/mainChat';
-import SubchatPanel from '../../components/subchatPanels/subchatPanel';
+import SubchatCanvas from '../../components/subchatPanels/subchatCanvas';
 
 import { assistantService, threadOptionsService } from '../../library/services';
 
@@ -40,30 +40,38 @@ async function handleSend() {
   const trimmed = message.trim();
   if (!trimmed) return;
 
-  
-  actions.addMainMessage('user', trimmed);
+  const threadId = state.activeThreadId;
+
   setMessage('');
 
-  //(mocked for now)
+  // USER MESSAGE
+  if (!threadId) {
+    actions.addMainMessage('user', trimmed);
+  } else {
+    actions.addThreadMessage(threadId, 'user', trimmed);
+  }
+
+  // ASSISTANT REPLY (mocked)
   const assistantText = await assistantService.reply(trimmed);
 
-  const assistantMsg = actions.addMainMessage(
-    'assistant',
-    assistantText,
-  );
+  if (!threadId) {
+    const assistantMsg = actions.addMainMessage('assistant', assistantText);
 
-  // (mocked for now)
-  const suggestions = await threadOptionsService.suggest(assistantText);
+    const suggestions = await threadOptionsService.suggest(assistantText);
 
-  actions.setThreadOptionsForMessage(
-    assistantMsg.id,
-    suggestions.map((s) => ({
-      title: s.title,
-      anchorMessageId: assistantMsg.id,
-      seedContext: s.seedContext,
-    })),
-  );
+    actions.setThreadOptionsForMessage(
+      assistantMsg.id,
+      suggestions.map((s) => ({
+        title: s.title,
+        anchorMessageId: assistantMsg.id,
+        seedContext: s.seedContext,
+      })),
+    );
+  } else {
+    actions.addThreadMessage(threadId, 'assistant', assistantText);
+  }
 }
+
 
 
 return (
@@ -76,26 +84,27 @@ return (
       onClose={() => setIsPanelOpen(false)}
     />
 
-    <MainChat
-      messages={state.main}
-      optionsByMessageId={state.optionsByMessageId}
-      onClickThreadOption={(option) => {
-        actions.createAndOpenThread({
-          title: option.title,
-          anchorMessageId: option.anchorMessageId,
-          seedAssistantText: `Let’s focus on: ${option.title}`,
-        });
-      }}
-    />
+<div className="rootPage__canvas">
+{!state.activeThreadId ? (
+  <MainChat
+    messages={state.main}
+    optionsByMessageId={state.optionsByMessageId}
+    onClickThreadOption={(option) => {
+      actions.createAndOpenThread({
+        title: option.title,
+        anchorMessageId: option.anchorMessageId,
+        seedAssistantText: `Let’s focus on: ${option.title}`,
+      });
+    }}
+  />
+) : (
+  <SubchatCanvas
+    thread={activeThread}
+    onBack={() => actions.closeThread()}
+  />
 
-    <SubchatPanel
-  isOpen={!!state.activeThreadId}
-  thread={activeThread}
-  onClose={() => actions.closeThread()}
-  onSendMessage={(threadId, role, text) => {
-    actions.addThreadMessage(threadId, role, text);
-  }}
-/>
+)}
+</div>
 
 
 

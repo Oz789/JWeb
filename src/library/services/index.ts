@@ -6,9 +6,7 @@ import type { ThreadOptionsService } from './threadOptions';
 import { mockAssistantService } from '../../mocks/assistant.mock';
 import { mockThreadOptionsService } from '../../mocks/threadOptions.mock';
 
-// Later you’ll add real implementations here:
-// import { apiAssistantService } from './assistant.api';
-// import { apiThreadOptionsService } from './threadOptions.api';
+
 
 export const assistantService: AssistantService = USE_MOCKS
   ? mockAssistantService
