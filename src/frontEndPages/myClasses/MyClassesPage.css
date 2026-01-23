@@ -1,4 +1,4 @@
-.logoHeader {
+.MyClasses_page {
   position: fixed;
   top: 18px;
   left: 50%;
@@ -9,6 +9,5 @@
   font-size: 14px;
 
   opacity: 0.9;
-  pointer-events: none;
-  z-index: 120; /* above background, below drawer if needed */
+  pointer-events: none; 
 }

@@ -1,0 +1,47 @@
+.mainChat {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainChat__list {
+  flex: 1;
+  overflow: auto;
+  padding: 90px 18px 140px; /* top header + bottom dock space */
+}
+
+.mainChat__empty {
+  opacity: 0.6;
+  padding: 16px;
+}
+
+.mainChat__msg {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.mainChat__msg.isUser {
+  justify-content: flex-end;
+}
+
+.mainChat__msg.isAssistant {
+  justify-content: flex-start;
+}
+
+.mainChat__bubble {
+  max-width: min(680px, 80%);
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+.mainChat__msg.isUser .mainChat__bubble {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.mainChat__msgBlock {
+  margin-bottom: 12px;
+}

@@ -1,9 +1,9 @@
 import './logoHeader.css';
 
-export default function BrandHeader() {
-  return (
-    <div className="brandHeader">
-      JUPEE
-    </div>
-  );
+type LogoHeaderProps = {
+  title: string;
+};
+
+export default function LogoHeader({ title }: LogoHeaderProps) {
+  return <div className="logoHeader">{title}</div>;
 }
