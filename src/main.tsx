@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RootHomePage from './FrontEnd/Home/RootHomePage';
+
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './AppRouter';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RootHomePage />
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   </React.StrictMode>,
 );

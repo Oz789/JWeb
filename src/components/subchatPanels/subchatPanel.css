@@ -1,0 +1,126 @@
+.subchatOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+  z-index: 200;
+}
+
+.subchatOverlay.isOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.subchatPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(460px, 92vw);
+  transform: translateX(110%);
+  transition: transform 200ms ease;
+  z-index: 210;
+
+  background: rgba(255, 255, 255, 0.20);
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.subchatPanel.isOpen {
+  transform: translateX(0);
+}
+
+.subchatHeader {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.subchatBackBtn {
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.35);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.subchatTitle {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.subchatHeaderSpacer {
+  width: 56px; /* balances back button */
+}
+
+.subchatBody {
+  flex: 1;
+  overflow: auto;
+  padding: 14px 14px 12px;
+}
+
+.subchatEmpty {
+  opacity: 0.6;
+  padding: 10px 4px;
+}
+
+.subchatMsg {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.subchatMsg.isUser {
+  justify-content: flex-end;
+}
+
+.subchatMsg.isAssistant {
+  justify-content: flex-start;
+}
+
+.subchatBubble {
+  max-width: 86%;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.50);
+  white-space: pre-wrap;
+  line-height: 1.35;
+}
+
+.subchatComposer {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  gap: 10px;
+  padding: 12px 12px 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.subchatInput {
+  height: 38px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.30);
+  border-radius: 14px;
+  padding: 0 12px;
+  outline: none;
+}
+
+.subchatSendBtn {
+  height: 38px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.30);
+  cursor: pointer;
+  font-weight: 900;
+}
