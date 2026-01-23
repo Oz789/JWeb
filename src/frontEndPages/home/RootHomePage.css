@@ -21,3 +21,19 @@
 .hiddenFileInput {
   display: none;
 }
+/* The middle "canvas" area that holds either MainChat or SubchatCanvas */
+.rootPage__canvas {
+  width: min(720px, calc(100vw - 48px));
+  height: calc(105vh - 180px); /* leaves room for header + bottom bar */
+  margin: 24px auto 0;
+  background: rgba(255, 255, 255, 0.05);
+
+  border-left: 2px solid rgba(255, 255, 255, 0.84);
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+
+  border-radius: 10px;
+  overflow: hidden; /* important so chat scroll stays inside */
+  display: flex;
+  flex-direction: column;
+}
